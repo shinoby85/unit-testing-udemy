@@ -1,11 +1,11 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MathService {
 
-  add(numbers: number[]): number{
+  add(numbers: number[]): number {
     let sum = 0;
 
     for (const number of numbers) {
@@ -13,6 +13,7 @@ export class MathService {
     }
     return sum;
   }
+
   transformToNumber(value: FormDataEntryValue): number {
     return +value;
   }
