@@ -5,14 +5,14 @@ import {Injectable} from '@angular/core';
 })
 export class ValidationService {
 
-  validateStringNotEmpty(value: FormDataEntryValue) {
+  validateStringNotEmpty(value: any) {
     if ((value as string).trim().length === 0) {
       throw new Error('Invalid input - must not be empty.');
     }
   }
 
-  validateNumber(number: number) {
-    if (isNaN(number)) {
+  validateNumber(number: any) {
+    if (isNaN(number) || typeof number !== 'number') {
       throw new Error('Invalid number input.');
     }
   }
