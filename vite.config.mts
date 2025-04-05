@@ -13,7 +13,12 @@ export default defineConfig(({ mode }) => {
     ],
     test: {
       globals: true,
-      environment: 'happy-dom',
+      browser: {
+        enabled: true,
+        name: 'chromium',
+        headless: false, // set to true in CI
+        provider: 'playwright',
+      },
       setupFiles: ['src/test-setup.ts'],
       include: ['**/*.spec.ts'],
       reporters: ['default'],
