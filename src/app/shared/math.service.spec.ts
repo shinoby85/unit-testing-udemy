@@ -3,7 +3,7 @@ import {TestBed} from '@angular/core/testing';
 import {MathService} from './math.service';
 import {beforeEach, describe, expect, it} from 'vitest';
 
-describe('[ Math Service ]:', () => {
+describe('[Math Service]:', () => {
   let service: MathService;
 
   beforeEach(() => {
@@ -33,5 +33,22 @@ describe('[ Math Service ]:', () => {
     const result = service.add(input);
     const expectedResult = input.reduce((prev, curr) => prev + +curr, 0);
     expect(result).toBe(expectedResult);
+  });
+  it('should yield 0 if an empty array is provided', () => {
+    const input = [];
+    const result = service.add(input);
+    expect(result).toBe(0);
+  });
+  it('should throw an error if no value is passed into the function', () => {
+    const resultFn = () => {
+      service.add();
+    }
+    expect(resultFn).toThrow();
+  });
+  it('should throw an error if provided with multiple arguments instead of an array', () => {
+    const resultFn = () => {
+      service.add(1, 2);
+    }
+    expect(resultFn).toThrow(/numbers is not iterable/);
   });
 });
