@@ -53,11 +53,15 @@ describe('[Math Service]:', () => {
   });
   it('[transformToNumber function] should numeric value must be converted from a string to a number', () => {
     const result = service.transformToNumber('14');
-    expect(result).not.toBeNaN();
+    expect(result).toBeTypeOf('number');
   });
-  it('[transformToNumber function] should yield NaN if value is not a number', () => {
-    const result = service.transformToNumber('test');
-    expect(result).toBeNaN();
+  it('[transformToNumber function] should yield NuN for non-transformable values', () => {
+    const result1 = service.transformToNumber('test');
+    const result2 = service.transformToNumber({});
+    const result3 = service.transformToNumber();
+    expect(result1).toBeNaN();
+    expect(result2).toBeNaN();
+    expect(result3).toBeNaN();
   });
   it('[transformToNumber function] should yield NaN if function doesn\'t have any arguments', () => {
     const result = service.transformToNumber();
