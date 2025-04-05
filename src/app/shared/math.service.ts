@@ -5,11 +5,11 @@ import {Injectable} from '@angular/core';
 })
 export class MathService {
 
-  add(numbers: number[]): number {
+  add(numbers: any[]): number {
     let sum = 0;
 
     for (const number of numbers) {
-      sum += number;
+      sum += +number;
     }
     return sum;
   }

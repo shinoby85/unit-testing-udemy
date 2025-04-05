@@ -1,8 +1,9 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { ParserService } from './parser.service';
+import {ParserService} from './parser.service';
+import {beforeEach, describe, expect, it} from 'vitest';
 
-describe('ParserService', () => {
+describe('[Parser Service]:', () => {
   let service: ParserService;
 
   beforeEach(() => {

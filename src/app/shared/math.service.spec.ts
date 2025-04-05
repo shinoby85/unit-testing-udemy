@@ -22,5 +22,16 @@ describe('[ Math Service ]:', () => {
     const result = service.add(numArr);
     //Assert
     expect(result).toBe(sum)
-  })
+  });
+  it('should yield NaN if a list one invalid number is provided', () => {
+    const input = ['invalid', 1];
+    const result = service.add(input);
+    expect(result).toBeNaN();
+  });
+  it('should yield a correct sum if an array of numeric string values is provided', () => {
+    const input = ['1', '2'];
+    const result = service.add(input);
+    const expectedResult = input.reduce((prev, curr) => prev + +curr, 0);
+    expect(result).toBe(expectedResult);
+  });
 });
