@@ -14,7 +14,7 @@ export class MathService {
     return sum;
   }
 
-  transformToNumber(value: FormDataEntryValue): number {
+  transformToNumber(value: any): number {
     return +value;
   }
 }

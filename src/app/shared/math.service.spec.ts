@@ -14,7 +14,7 @@ describe('[Math Service]:', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
-  it('should summarize all number values in an array', () => {
+  it('[Add function] should summarize all number values in an array', () => {
     //Arrange
     const numArr = [1, 2, 3];
     const sum = numArr.reduce((prev, curr) => prev + curr, 0)
@@ -23,32 +23,48 @@ describe('[Math Service]:', () => {
     //Assert
     expect(result).toBe(sum)
   });
-  it('should yield NaN if a list one invalid number is provided', () => {
+  it('[Add function] should yield NaN if a list one invalid number is provided', () => {
     const input = ['invalid', 1];
     const result = service.add(input);
     expect(result).toBeNaN();
   });
-  it('should yield a correct sum if an array of numeric string values is provided', () => {
+  it('[Add function] should yield a correct sum if an array of numeric string values is provided', () => {
     const input = ['1', '2'];
     const result = service.add(input);
     const expectedResult = input.reduce((prev, curr) => prev + +curr, 0);
     expect(result).toBe(expectedResult);
   });
-  it('should yield 0 if an empty array is provided', () => {
+  it('[Add function] should yield 0 if an empty array is provided', () => {
     const input = [];
     const result = service.add(input);
     expect(result).toBe(0);
   });
-  it('should throw an error if no value is passed into the function', () => {
+  it('[Add function] should throw an error if no value is passed into the function', () => {
     const resultFn = () => {
       service.add();
     }
     expect(resultFn).toThrow();
   });
-  it('should throw an error if provided with multiple arguments instead of an array', () => {
+  it('[Add function] should throw an error if provided with multiple arguments instead of an array', () => {
     const resultFn = () => {
       service.add(1, 2);
     }
     expect(resultFn).toThrow(/numbers is not iterable/);
+  });
+  it('[transformToNumber function] should numeric value must be converted from a string to a number', () => {
+    const result = service.transformToNumber('14');
+    expect(result).not.toBeNaN();
+  });
+  it('[transformToNumber function] should yield NaN if value is not a number', () => {
+    const result = service.transformToNumber('test');
+    expect(result).toBeNaN();
+  });
+  it('[transformToNumber function] should yield NaN if function doesn\'t have any arguments', () => {
+    const result = service.transformToNumber();
+    expect(result).toBeNaN();
+  });
+  it('[transformToNumber function] should yield 0 if function has empty string', () => {
+    const result = service.transformToNumber('');
+    expect(result).toBe(0);
   });
 });
