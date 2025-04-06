@@ -72,3 +72,13 @@ describe('[Math Service]:', () => {
     expect(result).toBe(0);
   });
 });
+
+describe('cleanNumbers()', () => {
+  let service: MathService;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({});
+    service = TestBed.inject(MathService);
+  });
+  
+})

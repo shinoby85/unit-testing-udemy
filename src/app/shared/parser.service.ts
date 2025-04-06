@@ -11,4 +11,10 @@ export class ParserService {
 
     return [num1Input, num2Input];
   }
+
+  extractEnteredNumberValues(form: HTMLFormElement) {
+    const formData = new FormData(form);
+    const numberInputs = this.extractNumbers(formData);
+    return numberInputs;
+  }
 }

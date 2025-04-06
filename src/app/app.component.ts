@@ -1,6 +1,6 @@
 import {Component, ElementRef, inject, ViewChild} from '@angular/core';
 import {FormsModule} from '@angular/forms';
-import {MathService, ParserService, ValidationService} from './shared';
+import {MathService, ParserService} from './shared';
 
 @Component({
   selector: 'app-root',
@@ -12,30 +12,26 @@ export class AppComponent {
   title = 'unit-testing-udemy';
   @ViewChild('result', {read: ElementRef}) divElem!: ElementRef<HTMLDivElement>;
 
-  validationService = inject(ValidationService);
+
   mathService = inject(MathService);
   parserService = inject(ParserService);
 
-  formSubmitHandler(form: HTMLFormElement, event: MouseEvent) {
+  public formSubmitHandler(form: HTMLFormElement, event: MouseEvent) {
     event.preventDefault();
-    const formData = new FormData(form);
-    const numberInputs = this.parserService.extractNumbers(formData);
+    const numberValues = this.parserService.extractEnteredNumberValues(form);
 
-    let result = '';
+    let result = this.mathService.calculateResult(numberValues);
+    let resultText = this.generateResultText(result);
 
-    try {
-      const numbers = [];
-      for (const numberInput of numberInputs) {
-        this.validationService.validateStringNotEmpty(numberInput);
-        const number = this.mathService.transformToNumber(numberInput);
-        this.validationService.validateNumber(number);
-        numbers.push(number);
-      }
-      result = this.mathService.add(numbers).toString();
-    } catch (error: any) {
-      result = error.message;
-    }
+    this.outputResult(resultText);
+  }
 
+
+  public outputResult(resultText: string) {
+    this.divElem.nativeElement.innerText = resultText;
+  }
+
+  public generateResultText(result: any) {
     let resultText = '';
 
     if (result === 'invalid') {
@@ -43,8 +39,8 @@ export class AppComponent {
     } else if (result !== 'no-calc') {
       resultText = 'Result: ' + result;
     }
-
-    this.divElem.nativeElement.textContent = resultText;
+    return resultText;
   }
+
 
 }
