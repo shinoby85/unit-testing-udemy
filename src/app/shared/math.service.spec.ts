@@ -80,5 +80,11 @@ describe('cleanNumbers()', () => {
     TestBed.configureTestingModule({});
     service = TestBed.inject(MathService);
   });
-  
+
+  it('should return an array of number values if an array of string number values is provided', () => {
+    const numberValues = ['1', '2'];
+    const cleanedNumbers = service.cleanNumbers(numberValues);
+    expect(cleanedNumbers[0]).toBeTypeOf('number');
+  });
+
 })
