@@ -85,6 +85,8 @@ describe('cleanNumbers()', () => {
     const numberValues = ['1', '2'];
     const cleanedNumbers = service.cleanNumbers(numberValues);
     expect(cleanedNumbers[0]).toBeTypeOf('number');
+    // expect(cleanedNumbers).toBe([1, 2]); // false
+    // expect(cleanedNumbers).toEqual([1, 2]); //true
   });
 
   it('should throw an error if an array with at least one empty string is provided', () => {
