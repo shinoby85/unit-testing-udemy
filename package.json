@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "http-server -c-1",
-    "test": "vitest --run"
+    "test": "vitest"
   },
   "keywords": [],
   "author": "",
@@ -14,7 +14,7 @@
     "http-server": "^14.1.0"
   },
   "devDependencies": {
-    "happy-dom": "^2.55.0",
-    "vitest": "^0.9.3"
+    "happy-dom": "^17.4.4",
+    "vitest": "^3.1.1"
   }
 }
