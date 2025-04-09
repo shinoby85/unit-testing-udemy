@@ -12,6 +12,7 @@ const document = window.document;
 
 vi.stubGlobal('document', document);
 let errEl;
+let testMessage = 'Test error message';
 
 beforeEach(() => {
   document.body.innerHTML = '';
@@ -20,7 +21,7 @@ beforeEach(() => {
 })
 
 it('should add an error paragraph to the id="errors" element', () => {
-  showError('test');
+  showError(testMessage);
   const errParagraph = errEl.firstElementChild;
 
   expect(errParagraph).not.toBeNull();
@@ -29,4 +30,9 @@ it('should not contain an error paragraph initially', () => {
   const errParagraph = errEl.firstElementChild;
 
   expect(errParagraph).toBeNull();
+});
+it('should output the provided message in the error paragraph', () => {
+  showError(testMessage);
+  const errParagraph = errEl.firstElementChild;
+  expect(errParagraph.textContent).toBe(testMessage);
 });
